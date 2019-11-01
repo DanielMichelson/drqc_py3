@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------
 Copyright (C) 2016 Swedish Meteorological and Hydrological Institute, SMHI,
 
-This file is part of RAVE.
+This file has been taken from RAVE for DRQC.
 
 RAVE is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -17,7 +17,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with RAVE.  If not, see <http://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------*/
 /**
- * Python compability file for making it possible to compile beamb for both python >2.6 and python3
+ * Python compability file for making it possible to compile drqc for both Python >2.6 and Python3
  * @file
  * @author Anders Henja (Swedish Meteorological and Hydrological Institute, SMHI)
  * @date 2010-03-30
