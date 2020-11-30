@@ -95,6 +95,9 @@ int drDeriveParameter(PolarScan_t *scan, double zdr_offset) {
 	} else {
 	  DRdb = DR_UNDETECT;
 	}
+	if ( (DRdb > DR_OFFSET) && (DRdb < (DR_OFFSET + DR_GAIN)) ) {
+	  DRdb = DR_OFFSET + DR_GAIN;
+	}
 	scaled = (DRdb - DR_OFFSET) / DR_GAIN;
 	PolarScanParam_setValue(DR, bin, ray, round(scaled));
       }
