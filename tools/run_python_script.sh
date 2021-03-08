@@ -23,6 +23,13 @@ fi
 
 RESULT=0
 
+# Identify python version
+PYTHON_BIN=`fgrep PYTHON_BIN "${DEF_MK_FILE}" | sed -e "s/\(PYTHON_BIN=[ \t]*\)//"`
+if [ "$PYTHON_BIN" = "" ]; then
+  PYTHON_BIN=python
+fi
+
+
 # RUN THE PYTHON TESTS
 HLHDF_MKFFILE=`fgrep HLHDF_HLDEF_MK_FILE "${DEF_MK_FILE}" | sed -e"s/\(HLHDF_HLDEF_MK_FILE=[ \t]*\)//"`
 
@@ -32,7 +39,7 @@ HDF5_LDPATH=`fgrep HDF5_LIBDIR "${HLHDF_MKFFILE}" | sed -e"s/\(HDF5_LIBDIR=[ \t]
 # Get HLHDFs libpath from raves mkf file
 HLHDF_LDPATH=`fgrep HLHDF_LIB_DIR "${DEF_MK_FILE}" | sed -e"s/\(HLHDF_LIB_DIR=[ \t]*\)//"`
 
-BNAME=`python -c 'from distutils import util; import sys; print("lib.%s-%s" % (util.get_platform(), sys.version[0:3]))'`
+BNAME=`$PYTHON_BIN -c 'from distutils import util; import sys; print("lib.%s-%s" % (util.get_platform(), sys.version[0:3]))'`
 
 RBPATH="${SCRIPTPATH}/../Lib:${SCRIPTPATH}/../modules"
 EC_LDPATH="${SCRIPTPATH}/../src"
@@ -77,9 +84,9 @@ NARGS=$#
 PYSCRIPT=
 DIRNAME=
 if [ $NARGS -eq 1 ]; then
-  PYSCRIPT=`python -c "import os;print(os.path.abspath(\"$1\"))"`
+  PYSCRIPT=`$PYTHON_BIN -c "import os;print(os.path.abspath(\"$1\"))"`
 elif [ $NARGS -eq 2 ]; then
-  PYSCRIPT=`python -c "import os;print(os.path.abspath(\"$1\"))"`
+  PYSCRIPT=`$PYTHON_BIN -c "import os;print(os.path.abspath(\"$1\"))"`
   DIRNAME="$2"
 elif [ $NARGS -eq 0 ]; then
   # Do nothing
@@ -95,9 +102,9 @@ if [ "$DIRNAME" != "" ]; then
 fi
 
 if [ "$PYSCRIPT" != "" ]; then
-  python "$PYSCRIPT"
+  $PYTHON_BIN "$PYSCRIPT"
 else
-  python
+  $PYTHON_BIN
 fi
 
 VAL=$?
