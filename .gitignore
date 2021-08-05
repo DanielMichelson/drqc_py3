@@ -1,0 +1,14 @@
+
+# Common ignores
+.ipynb_checkpoints/
+.pyc
+__pycache__
+
+# IDEs configurations
+.vscode/
+.idea/
+
+# Compiled extensions
+*.so
+.dep
+*.o
